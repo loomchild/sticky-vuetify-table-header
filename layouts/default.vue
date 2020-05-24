@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <main-bar />
     <v-content>
       <nuxt />
     </v-content>
@@ -7,7 +8,12 @@
 </template>
 
 <script>
+import MainBar from '@/components/MainBar'
+
 export default {
+  components: {
+    MainBar
+  }
 }
 </script>
 
