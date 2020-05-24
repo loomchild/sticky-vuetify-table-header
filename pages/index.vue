@@ -28,15 +28,15 @@ export default {
   computed: {
     headersSquare () {
       return [
-        { text: 'n', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n' },
-        { text: 'n²', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n2' }
+        { text: 'n', align: 'right', class: 'sticky-header title grey lighten-3', sortable: false, value: 'n' },
+        { text: 'n²', align: 'right', class: 'sticky-header title grey lighten-3', sortable: false, value: 'n2' }
       ]
     },
 
     headersCube () {
       return [
-        { text: 'n', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n' },
-        { text: 'n³', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n3' }
+        { text: 'n', align: 'right', class: 'sticky-header title grey lighten-3', sortable: false, value: 'n' },
+        { text: 'n³', align: 'right', class: 'sticky-header title grey lighten-3', sortable: false, value: 'n3' }
       ]
     },
 
@@ -52,7 +52,7 @@ export default {
 <style scoped>
 .v-data-table /deep/ .sticky-header {
   position: sticky;
-  top: var(--mainBarHeight);
+  top: var(--toolbarHeight);
 }
 
 .v-data-table /deep/ .v-data-table__wrapper {

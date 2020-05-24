@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar ref="toolbar" v-mutate="onMutate" app prominent dark src="https://picsum.photos/1600/300?grayscale" shrink-on-scroll fade-img-on-scroll scroll-threshold="400">
+  <v-app-bar ref="toolbar" v-mutate="onMutate" app prominent dark src="https://picsum.photos/1600/300?grayscale" shrink-on-scroll fade-img-on-scroll scroll-threshold="500">
     <v-app-bar-nav-icon />
     <v-toolbar-title>Sticky Table Headers Demo</v-toolbar-title>
     <v-spacer />
@@ -15,7 +15,7 @@ export default {
       if (toolbar) {
         height = `${toolbar.$el.offsetHeight}px`
       }
-      document.documentElement.style.setProperty('--mainBarHeight', height)
+      document.documentElement.style.setProperty('--toolbarHeight', height)
     }
   }
 }
