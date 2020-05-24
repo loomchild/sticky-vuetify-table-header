@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar ref="toolbar" v-mutate="onMutate" color="teal darken-3" app dark shrink-on-scroll prominent scroll-threshold="400">
+  <v-app-bar ref="toolbar" v-mutate="onMutate" app prominent dark src="https://picsum.photos/1600/300?grayscale" shrink-on-scroll fade-img-on-scroll scroll-threshold="400">
     <v-app-bar-nav-icon />
     <v-toolbar-title>Sticky Table Headers Demo</v-toolbar-title>
     <v-spacer />
