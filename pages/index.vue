@@ -1,125 +1,61 @@
 <template>
-  <v-container full-height>
+  <v-container>
     <v-row>
-      <v-col cols="12" class="headline text-center">
-        <span>
-          Background color
-        </span>
+      <v-col cols="12" class="headline">
+        Number Squares
       </v-col>
-    </v-row>
-    <v-row class="mt-4">
-      <v-spacer />
-      <v-col cols="auto">
-        <v-btn @click="darken">
-          <v-icon class="mr-1 title">
-            mdi-brightness-3
-          </v-icon>
-          Darken
-        </v-btn>
+      <v-col cols="12">
+        Below table contains natural numbers and their squares.
       </v-col>
-      <v-col cols="auto">
-        <v-btn @click="lighten">
-          <v-icon class="mr-1 title">
-            mdi-brightness-5
-          </v-icon>
-          Lighten
-        </v-btn>
+      <v-col cols="9" sm="5" md="3">
+        <v-data-table :headers="headersSquare" :items="data" :items-per-page="-1" :mobile-breakpoint="null" hide-default-footer class="elevation-1" />
       </v-col>
-      <v-col cols="auto">
-        <v-btn @click="swap">
-          <v-icon class="mr-1 title">
-            mdi-invert-colors
-          </v-icon>
-          Swap
-        </v-btn>
+      <v-col cols="12" class="headline">
+        Number Cubes
       </v-col>
-      <v-spacer />
+      <v-col cols="12">
+        Below table contains natural numbers and their cubes.
+      </v-col>
+      <v-col cols="9" sm="5" md="3">
+        <v-data-table :headers="headersCube" :items="data" :items-per-page="-1" :mobile-breakpoint="null" hide-default-footer class="elevation-1" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-// Credit: https://css-tricks.com/snippets/javascript/lighten-darken-color/
-function lightenDarkenColor (col, amt) {
-  let usePound = false
-
-  if (col[0] === '#') {
-    col = col.slice(1)
-    usePound = true
-  }
-
-  const num = parseInt(col, 16)
-
-  let r = (num >> 16) + amt
-
-  if (r > 255) {
-    r = 255
-  } else if (r < 0) {
-    r = 0
-  }
-
-  let b = ((num >> 8) & 0x00FF) + amt
-
-  if (b > 255) {
-    b = 255
-  } else if (b < 0) {
-    b = 0
-  }
-
-  let g = (num & 0x0000FF) + amt
-
-  if (g > 255) {
-    g = 255
-  } else if (g < 0) {
-    g = 0
-  }
-
-  return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
-}
-
 export default {
   computed: {
-    theme () {
-      return this.$vuetify.theme.isDark ? 'dark' : 'light'
-    }
-  },
-
-  methods: {
-    update (color, amount) {
-      const theme = this.$vuetify.theme.themes[this.theme]
-      const currentColor = theme[color]
-      if (currentColor == null) {
-        return
-      }
-      if (typeof currentColor === 'object') {
-        Object.entries(currentColor).forEach(([key, value]) => {
-          currentColor[key] = lightenDarkenColor(value, amount)
-        })
-      } else {
-        theme[color] = lightenDarkenColor(currentColor, amount)
-      }
+    headersSquare () {
+      return [
+        { text: 'n', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n' },
+        { text: 'n²', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n2' }
+      ]
     },
 
-    touchAll () {
-      const value = this.$vuetify.theme.themes[this.theme]
-      this.$vuetify.theme.themes[this.theme] = {}
-      this.$vuetify.theme.themes[this.theme] = value
+    headersCube () {
+      return [
+        { text: 'n', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n' },
+        { text: 'n³', align: 'right', class: 'title sticky-header grey lighten-3', sortable: false, value: 'n3' }
+      ]
     },
 
-    lighten () {
-      this.update('background', 10)
-    },
-
-    darken () {
-      this.update('background', -10)
-    },
-
-    swap () {
-      this.$vuetify.theme.isDark = !this.$vuetify.theme.isDark
-
-      // necessary to reset colors after changing the theme, perhaps a Vuetify.js bug
-      this.touchAll(1)
+    data () {
+      return Array.from(Array(50).keys())
+        .map(n => n + 1)
+        .map(n => ({ n, n2: n * n, n3: n * n * n }))
     }
   }
 }
 </script>
+
+<style scoped>
+.v-data-table /deep/ .sticky-header {
+  position: sticky;
+  top: var(--mainBarHeight);
+}
+
+.v-data-table /deep/ .v-data-table__wrapper {
+  overflow: unset;
+}
+</style>
