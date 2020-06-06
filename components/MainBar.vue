@@ -8,6 +8,10 @@
 
 <script>
 export default {
+  mounted () {
+    this.onMutate()
+  },
+
   methods: {
     onMutate () {
       let height = 0
