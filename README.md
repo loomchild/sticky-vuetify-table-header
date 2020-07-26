@@ -2,7 +2,7 @@
 
 > A project demonstrating how to add sticky data table headers in Vuetify.js and Nuxt.js 
 
-Read my related article on [Medium](...) to learn more.
+Read my related article on [Medium](https://medium.com/untitled-factory/sticky-table-header-in-vuetify-js-fab39988dc3) to learn more.
 
 ## Build Setup
 
